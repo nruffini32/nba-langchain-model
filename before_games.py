@@ -1,5 +1,5 @@
-from before_games_files.nba import NBA
-from before_games_files.model import Model
+from nba import NBA
+from model import Model
 from dotenv import load_dotenv
 
 

@@ -184,34 +184,58 @@ class NBAScraper:
         
         return lst
     
-    # Gets matchups for nba games and store in DB "1 2", "20 22"
-    # ADDD LINES TO THIS ???
+    # Gets matchups for nba games and betting lines
     def get_matchups(self):
         today = date.today()
         print(f"Fetching matchups for {today}..")
 
-        response = requests.get("https://www.vegasinsider.com/nba/matchups/")
-        soup = BeautifulSoup(response.text, 'html.parser')
-        games = soup.find_all("a", class_="team-name")
-        num_matchups = len(games) // 2
-        num_matchups = num_matchups // 2
+        self.driver.get("https://www.vegasinsider.com/nba/matchups/")
+        time.sleep(1)
+        page_source = self.driver.page_source
+        soup = BeautifulSoup(page_source, "html.parser")
+        header_rows = soup.find("tbody", id="trends-table-bets--0").find_all("tr", class_="header")
+        lst = []
+        for header_row in header_rows:
+            # Create a new table starting from the header row
+            current_table = str(header_row)
 
-        # Getting matchups and storing in matchups
-        matchups = []
-        for i in range(num_matchups):
-            i = i*2
-            team1 = games[i].find("span").text.strip()
-            team2 = games[i+1].find("span").text.strip()
-            tup = (team1, team2)
-            matchups.append(tup)
-        
-        print("Matchups:", matchups)
-        print()
-        return matchups
+            # Find the following siblings (sibling rows) until the next header row
+            next_row = header_row.find_next_sibling()
+            while next_row and 'header' not in next_row.get('class', []):
+                current_table += str(next_row)
+                next_row = next_row.find_next_sibling()
+
+            # table for each matchup
+            table = BeautifulSoup(current_table, 'html.parser')
+            dic = {}
+
+            # Getting matchup and saving as tup
+            teams_soup = table.find_all("a", class_="team-name")
+            teams = [tag.find("span").text.strip() for tag in teams_soup]
+            temp = (teams[0], teams[1])
+            tup = tuple(sorted(temp))
+            dic["matchup"] = tup
+
+            # Getting abbreviations
+            tags = {tag.get("data-abbr"):  tag.find("span").text.strip() for tag in teams_soup}
+
+            # Getting lines
+            lines_dic = {}
+            lines_soup = table.find("tr", class_="game-odds current")
+            spread = lines_soup.find('td', {'data-filter': 'spread'}).text.strip()
+            total = lines_soup.find('td', {'data-filter': 'total'}).text.strip()[1:]
+            temp = spread.split()[0]
+            lines_dic["spread"] = spread.replace(temp, tags[temp])
+            lines_dic["total"] = total
+            dic["lines"] = lines_dic
+
+            lst.append(dic)
+
+        return lst
 
 
     
-nba = NBAScraper()
+# nba = NBAScraper()
 # nba.get_single_team_season_stats("Nets")
 # data = nba.get_all_team_season_stats()
 # for team in ["Pistons", "Pelicans"]:
