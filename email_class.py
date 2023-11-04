@@ -16,9 +16,7 @@ class Email:
         self.smtp_port = 587
         self.root_path = os.environ.get("ROOT_PATH")
 
-        self.to_emails = ["nicoloruffini32@gmail.com", "nrruffini@outlook.com", "tuohymax@msu.edu"]
-        # self.to_emails = ["nicoloruffini32@gmail.com", "nrruffini@outlook.com"]
-
+        self.to_emails = []
 
         self.server = smtplib.SMTP(self.smtp_server, self.smtp_port)
         self.server.starttls()
