@@ -5,22 +5,74 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import json
-from constants import teams
 from datetime import date
+
+class Soup:
+    def __init__(self, dynamic=False, element="") -> None:
+        self.dynamic = dynamic
+        self.element = element
+
+        if self.dynamic:
+            options = webdriver.ChromeOptions()
+            options.page_load_strategy = "none"
+            options.add_argument('--headless')
+            options.add_argument('--disable-gpu')
+            options.add_argument("--disable-images")
+            self.driver = webdriver.Chrome(options=options)
+
+    def get_soup(self, url):
+        if self.dynamic:
+            self.driver.get(url)
+            if self.element != "":
+                WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((By.ID, self.element))
+                )
+            else:
+                time.sleep(1)
+            page_source = self.driver.page_source
+            soup = BeautifulSoup(page_source, "lxml")
+        else:
+            response = requests.get(url)
+            soup = BeautifulSoup(response.text, 'lxml')
+
+        return soup
 
 class NBAScraper:
     def __init__(self) -> None:
         self.base_url = "https://www.basketball-reference.com"
 
-        self.links = teams
-
-        options = webdriver.ChromeOptions()
-        options.page_load_strategy = "none"
-        options.add_argument('--headless')
-        options.add_argument('--disable-gpu')
-        options.add_argument("--disable-images")
-        self.driver = webdriver.Chrome(options=options)
+        self.links = {
+            'Hawks': '/teams/ATL/',
+            'Celtics': '/teams/BOS/', 
+            'Nets': '/teams/BRK/', 
+            'Hornets': '/teams/CHO/', 
+            'Bulls': '/teams/CHI/', 
+            'Cavaliers': '/teams/CLE/', 
+            'Mavericks': '/teams/DAL/', 
+            'Nuggets': '/teams/DEN/', 
+            'Pistons': '/teams/DET/', 
+            'Warriors': '/teams/GSW/', 
+            'Rockets': '/teams/HOU/', 
+            'Pacers': '/teams/IND/', 
+            'Clippers': '/teams/LAC/', 
+            'Lakers': '/teams/LAL/', 
+            'Grizzlies': '/teams/MEM/', 
+            'Heat': '/teams/MIA/', 
+            'Bucks': '/teams/MIL/', 
+            'Timberwolves': '/teams/MIN/', 
+            'Pelicans': '/teams/NOP/', 
+            'Knicks': '/teams/NYK/', 
+            'Thunder': '/teams/OKC/', 
+            'Magic': '/teams/ORL/', 
+            '76ers': '/teams/PHI/', 
+            'Suns': '/teams/PHO/', 
+            'Trail Blazers': '/teams/POR/', 
+            'Kings': '/teams/SAC/', 
+            'Spurs': '/teams/SAS/', 
+            'Raptors': '/teams/TOR/', 
+            'Jazz': '/teams/UTA/', 
+            'Wizards': '/teams/WAS/'
+            }
 
         self.season_desc = {}
         self.game_desc = {}
@@ -31,8 +83,7 @@ class NBAScraper:
 
     # Scrape teams and links from site and return as dictionary
     def _get_links(self):
-        response = requests.get(self.base_url + "/teams/")
-        soup = BeautifulSoup(response.text, 'html.parser')
+        soup = Soup().get_soup(self.base_url + "/teams/")
 
         # Create dictionary with team: link
         rows = soup.find(id="teams_active").find_all(class_="full_table")
@@ -42,8 +93,6 @@ class NBAScraper:
             team = "Trail Blazers" if tag.text.split()[-1] == "Blazers" else tag.text.split()[-1]
 
             dic[team] = tag.get("href")
-
-        print(dic)
 
         return dic
     
@@ -60,12 +109,7 @@ class NBAScraper:
     def _create_season_desc_dic(self):
         full_url = "https://www.basketball-reference.com/teams/NOP/2024.html"
 
-        self.driver.get(full_url)
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, 'team_and_opponent'))
-        )
-        page_source = self.driver.page_source
-        soup = BeautifulSoup(page_source, "html.parser")
+        soup = Soup(dynamic=True, element='team_and_opponent').get_soup(full_url)
 
         # Getting english descriptions
         header = soup.find("table", id="team_and_opponent").find("thead").find_all("th")
@@ -75,8 +119,7 @@ class NBAScraper:
     def _create_game_desc_dic(self):
         full_url = "https://www.basketball-reference.com/teams/NOP/2024/gamelog/"
 
-        response = requests.get(full_url)
-        soup = BeautifulSoup(response.text, "lxml")
+        soup = Soup().get_soup(full_url)
         table = soup.find("table", id="tgl_basic")
 
         # Getting english descriptions
@@ -103,23 +146,26 @@ class NBAScraper:
 
         full_url = self.base_url + self.links[team] + "2024.html"
 
-        self.driver.get(full_url)
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, 'team_and_opponent'))
-        )
-        page_source = self.driver.page_source
-        soup = BeautifulSoup(page_source, "html.parser")
-
         # Getting english descriptions if not already created
         if not self.season_desc:
             self._create_season_desc_dic()
+            self.s = Soup(dynamic=True, element='team_and_opponent')
 
-        # Getting team statistics   
+        soup = self.s.get_soup(full_url)
+
+        # Getting team statistics
         rows = soup.find("table", id="team_and_opponent").find("tbody").find_all("tr")
         stats_dic = {}
+
+        # Record
+        misc_table = soup.find("table", id="team_misc").find("tr", {"data-row": 0})
+        wins = misc_table.find("td", {"data-stat": "wins"}).text
+        losses = misc_table.find("td", {"data-stat": "losses"}).text
+
         games_played = rows[0].find("td", {"data-stat":"g"}).text
         stats_dic["Team"] = team
         stats_dic["Games"] = games_played
+        stats_dic["Record"] = f"{wins}-{losses}"
         for tag in rows[1].find_all("td")[1:]:
             lookup = tag["data-stat"].replace("_per_g", "")
             stats_dic[self.season_desc[lookup] + " Per Game"] = tag.text
@@ -129,22 +175,24 @@ class NBAScraper:
     def get_all_team_season_stats(self):
         print("Fetching data for all teams..")
         self._create_season_desc_dic()
-        team_data = []
+        team_data = {}
+
+        self.s = Soup(dynamic=True, element='team_and_opponent')
+
+        # Getting english descriptions if not already created
+        self._create_season_desc_dic()
 
         links1, links2 = self._split_dict(self.links)
         for team in links1:
             dic = self.get_single_team_season_stats(team)
-            team_data.append(dic)
+            team_data[team] = dic
         
         print("Sleeping for a min bc www.basketball-reference.com is stupid!")
         time.sleep(61)
 
         for team in links2:
             dic = self.get_single_team_season_stats(team)
-            team_data.append(dic)
-
-        with open('nba_scraper/nba_season_stats.json', 'w') as file:
-            json.dump(team_data, file)
+            team_data[team] = dic
         
         print("Done fetching all data\n")
         return team_data
@@ -153,8 +201,7 @@ class NBAScraper:
         print(f"Fetching game stats for {team}..")
         full_url = self.base_url + self.links[team] + "2024/gamelog/"
 
-        response = requests.get(full_url)
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = Soup().get_soup(full_url)
         table = soup.find("table", id="tgl_basic")
 
         if not self.game_desc:
@@ -189,10 +236,8 @@ class NBAScraper:
         today = date.today()
         print(f"Fetching matchups for {today}..")
 
-        self.driver.get("https://www.vegasinsider.com/nba/matchups/")
-        time.sleep(1)
-        page_source = self.driver.page_source
-        soup = BeautifulSoup(page_source, "html.parser")
+        soup = Soup(dynamic=True).get_soup("https://www.vegasinsider.com/nba/matchups/")
+
         header_rows = soup.find("tbody", id="trends-table-bets--0").find_all("tr", class_="header")
         lst = []
         for header_row in header_rows:
@@ -231,16 +276,52 @@ class NBAScraper:
 
             lst.append(dic)
 
+        print("Done fetching matchups!\n")
+
         return lst
+    
+    def get_yesterday_scores(self):
+    
+        soup = Soup().get_soup(self.base_url)
+
+        tables = soup.find("div", class_="game_summaries").find_all("div", class_="game_summary expanded nohover")
+        dic = {}
+        for table in tables:
+            winner_tag = table.find("tr", class_="winner")
+            win_team = winner_tag.find("a").text
+            win_score = float(winner_tag.find("td", class_="right").text)
+
+            loser_tag = table.find("tr", class_="loser")
+            lose_team = loser_tag.find("a").text
+            lose_score = float(loser_tag.find("td", class_="right").text)
+
+            for team in self.links:
+                if team in win_team:
+                    win_team = team
+                if team in lose_team:
+                    lose_team = team
+
+            temp = (win_team, lose_team)
+            tup = tuple(sorted(temp))
+
+
+
+            dic[tup] = {win_team: win_score, lose_team: lose_score}
+
+        return dic
+
+
+        
 
 
     
 # nba = NBAScraper()
-# nba.get_single_team_season_stats("Nets")
+# nba.get_single_team_season_stats("Spurs")
 # data = nba.get_all_team_season_stats()
 # for team in ["Pistons", "Pelicans"]:
 #     nba.get_single_team_game_stats(team)
 # nba.get_matchups()
+# nba.get_yesterday_scores()
 
 
     

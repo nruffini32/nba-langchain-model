@@ -1,0 +1,9 @@
+team1,team2,predicted_score1,predicted_score2,model_prediction,total,pick,value,oupick,ouvalue
+76ers,Suns,115.0,111.0,76ers -4.0,222.0,Suns +5.0,1.0,Over,4.0
+Hawks,Pelicans,117.0,112.0,Hawks -5.0,234.5,Hawks +2.0,7.0,Under,5.5
+Hornets,Pacers,116.0,125.0,Pacers -9.0,240.0,Pacers -4.5,4.5,Over,1.0
+Lakers,Magic,113.0,109.0,Lakers -4.0,223.0,Lakers -3.5,0.5,Under,1.0
+Celtics,Nets,115.0,112.0,Celtics -3.0,227.0,Nets +9.0,6.0,No Pick,No Pick
+Jazz,Timberwolves,115.0,108.0,Jazz -7.0,225.0,Jazz +7.5,14.5,Under,2.0
+Kings,Rockets,116.0,111.0,Kings -5.0,222.0,Kings -2.5,2.5,Over,5.0
+Bulls,Nuggets,107.0,111.0,Nuggets -4.0,217.5,Bulls +8.0,4.0,Over,0.5

@@ -1,0 +1,315 @@
+You are an AI Machine Learning model who predicts NBA scores.
+You are given data for two teams.
+For each team you are given their total season statistics and their statistics for their last 3 games.
+Use this data and any other resources available to you to act as an AI Machine 
+Learning Model to predict the score between the two teams.
+
+Predict the score between the two teams using the data below.
+Give the prediction in the following format
+Predicted Score: [team1]: [score], [team2]: [score]
+Teams: 76ers and Suns
+
+--- 76ers FULL SEASON DATA BELOW ---
+Team: 76ers
+Games: 4
+Record: 3-1
+Minutes Played Per Game: 240.0
+Field Goals Per Game: 41.5
+FGA Per Game: 85.0
+Field Goal Percentage Per Game: .488
+3-Point Field Goals Per Game: 11.5
+3-Point Field Goal Attempts Per Game: 29.0
+3-Point Field Goal Percentage Per Game: .397
+2-Point Field Goals Per Game: 30.0
+2-point Field Goal Attempts Per Game: 56.0
+2-Point Field Goal Percentage Per Game: .536
+Free Throws Per Game: 23.3
+Free Throw Attempts Per Game: 28.5
+Free Throw Percentage Per Game: .816
+Offensive Rebounds Per Game: 9.8
+Defensive Rebounds Per Game: 34.8
+Total Rebounds Per Game: 44.5
+Assists Per Game: 24.8
+Steals Per Game: 9.5
+Blocks Per Game: 7.8
+Turnovers Per Game: 14.0
+Personal Fouls Per Game: 21.3
+Points Per Game: 117.8
+
+--- 76ers LAST 3 GAMES DATA BELOW ---
+-- NEW GAME --
+G: 2
+Date: 2023-10-28
+Game Location: Away
+Opp: TOR
+Win/Loss: W
+Points: 114
+Opponent Points: 107
+Field Goals: 43
+FGA: 86
+Field Goal Percentage: .500
+3-Point Field Goals: 10
+3-Point Field Goal Attempts: 28
+3-Point Field Goal Percentage: .357
+Free Throws: 18
+Free Throw Attempts: 21
+Free Throw Percentage: .857
+Offensive Rebounds: 9
+Total Rebounds: 42
+Assists: 25
+Steals: 8
+Blocks: 7
+Turnovers: 9
+Personal Fouls: 18
+Opponent Field Goals: 38
+Opponent Field Goal Attempts: 87
+Opponent Field Goal Percentage: .437
+Opponent 3-Point Field Goals: 17
+Opponent 3-Point Field Goal Attempts: 32
+Opponent 3-Point Field Goal Percentage: .531
+Opponent Free Throws: 14
+Opponent Free Throw Attempts: 19
+Opponent Free Throw Percentage: .737
+Opponent Offensive Rebounds: 13
+Opponent Total Rebounds: 41
+Opponent Assists: 28
+Opponent Steals: 5
+Opponent Blocks: 5
+Opponent Turnovers: 13
+Opponent Personal Fouls: 19
+
+-- NEW GAME --
+G: 3
+Date: 2023-10-29
+Game Location: Home
+Opp: POR
+Win/Loss: W
+Points: 126
+Opponent Points: 98
+Field Goals: 40
+FGA: 82
+Field Goal Percentage: .488
+3-Point Field Goals: 11
+3-Point Field Goal Attempts: 28
+3-Point Field Goal Percentage: .393
+Free Throws: 35
+Free Throw Attempts: 40
+Free Throw Percentage: .875
+Offensive Rebounds: 11
+Total Rebounds: 51
+Assists: 28
+Steals: 10
+Blocks: 17
+Turnovers: 15
+Personal Fouls: 20
+Opponent Field Goals: 36
+Opponent Field Goal Attempts: 94
+Opponent Field Goal Percentage: .383
+Opponent 3-Point Field Goals: 7
+Opponent 3-Point Field Goal Attempts: 31
+Opponent 3-Point Field Goal Percentage: .226
+Opponent Free Throws: 19
+Opponent Free Throw Attempts: 22
+Opponent Free Throw Percentage: .864
+Opponent Offensive Rebounds: 14
+Opponent Total Rebounds: 42
+Opponent Assists: 19
+Opponent Steals: 10
+Opponent Blocks: 9
+Opponent Turnovers: 15
+Opponent Personal Fouls: 26
+
+-- NEW GAME --
+G: 4
+Date: 2023-11-02
+Game Location: Home
+Opp: TOR
+Win/Loss: W
+Points: 114
+Opponent Points: 99
+Field Goals: 42
+FGA: 92
+Field Goal Percentage: .457
+3-Point Field Goals: 9
+3-Point Field Goal Attempts: 25
+3-Point Field Goal Percentage: .360
+Free Throws: 21
+Free Throw Attempts: 25
+Free Throw Percentage: .840
+Offensive Rebounds: 15
+Total Rebounds: 46
+Assists: 21
+Steals: 12
+Blocks: 3
+Turnovers: 14
+Personal Fouls: 19
+Opponent Field Goals: 38
+Opponent Field Goal Attempts: 79
+Opponent Field Goal Percentage: .481
+Opponent 3-Point Field Goals: 10
+Opponent 3-Point Field Goal Attempts: 28
+Opponent 3-Point Field Goal Percentage: .357
+Opponent Free Throws: 13
+Opponent Free Throw Attempts: 19
+Opponent Free Throw Percentage: .684
+Opponent Offensive Rebounds: 9
+Opponent Total Rebounds: 41
+Opponent Assists: 30
+Opponent Steals: 4
+Opponent Blocks: 3
+Opponent Turnovers: 19
+Opponent Personal Fouls: 20
+
+
+--- Suns FULL SEASON DATA BELOW ---
+Team: Suns
+Games: 5
+Record: 2-3
+Minutes Played Per Game: 240.0
+Field Goals Per Game: 41.2
+FGA Per Game: 84.8
+Field Goal Percentage Per Game: .486
+3-Point Field Goals Per Game: 12.8
+3-Point Field Goal Attempts Per Game: 34.4
+3-Point Field Goal Percentage Per Game: .372
+2-Point Field Goals Per Game: 28.4
+2-point Field Goal Attempts Per Game: 50.4
+2-Point Field Goal Percentage Per Game: .563
+Free Throws Per Game: 17.6
+Free Throw Attempts Per Game: 21.8
+Free Throw Percentage Per Game: .807
+Offensive Rebounds Per Game: 9.0
+Defensive Rebounds Per Game: 36.0
+Total Rebounds Per Game: 45.0
+Assists Per Game: 25.0
+Steals Per Game: 7.0
+Blocks Per Game: 5.6
+Turnovers Per Game: 17.4
+Personal Fouls Per Game: 19.0
+Points Per Game: 112.8
+
+--- Suns LAST 3 GAMES DATA BELOW ---
+-- NEW GAME --
+G: 3
+Date: 2023-10-28
+Game Location: Home
+Opp: UTA
+Win/Loss: W
+Points: 126
+Opponent Points: 104
+Field Goals: 45
+FGA: 85
+Field Goal Percentage: .529
+3-Point Field Goals: 10
+3-Point Field Goal Attempts: 37
+3-Point Field Goal Percentage: .270
+Free Throws: 26
+Free Throw Attempts: 28
+Free Throw Percentage: .929
+Offensive Rebounds: 7
+Total Rebounds: 39
+Assists: 31
+Steals: 10
+Blocks: 7
+Turnovers: 11
+Personal Fouls: 19
+Opponent Field Goals: 40
+Opponent Field Goal Attempts: 91
+Opponent Field Goal Percentage: .440
+Opponent 3-Point Field Goals: 12
+Opponent 3-Point Field Goal Attempts: 37
+Opponent 3-Point Field Goal Percentage: .324
+Opponent Free Throws: 12
+Opponent Free Throw Attempts: 14
+Opponent Free Throw Percentage: .857
+Opponent Offensive Rebounds: 15
+Opponent Total Rebounds: 45
+Opponent Assists: 26
+Opponent Steals: 6
+Opponent Blocks: 5
+Opponent Turnovers: 18
+Opponent Personal Fouls: 20
+
+-- NEW GAME --
+G: 4
+Date: 2023-10-31
+Game Location: Home
+Opp: SAS
+Win/Loss: L
+Points: 114
+Opponent Points: 115
+Field Goals: 42
+FGA: 83
+Field Goal Percentage: .506
+3-Point Field Goals: 18
+3-Point Field Goal Attempts: 39
+3-Point Field Goal Percentage: .462
+Free Throws: 12
+Free Throw Attempts: 15
+Free Throw Percentage: .800
+Offensive Rebounds: 6
+Total Rebounds: 43
+Assists: 29
+Steals: 8
+Blocks: 7
+Turnovers: 19
+Personal Fouls: 18
+Opponent Field Goals: 43
+Opponent Field Goal Attempts: 92
+Opponent Field Goal Percentage: .467
+Opponent 3-Point Field Goals: 14
+Opponent 3-Point Field Goal Attempts: 37
+Opponent 3-Point Field Goal Percentage: .378
+Opponent Free Throws: 15
+Opponent Free Throw Attempts: 20
+Opponent Free Throw Percentage: .750
+Opponent Offensive Rebounds: 8
+Opponent Total Rebounds: 37
+Opponent Assists: 25
+Opponent Steals: 10
+Opponent Blocks: 9
+Opponent Turnovers: 12
+Opponent Personal Fouls: 17
+
+-- NEW GAME --
+G: 5
+Date: 2023-11-02
+Game Location: Home
+Opp: SAS
+Win/Loss: L
+Points: 121
+Opponent Points: 132
+Field Goals: 43
+FGA: 80
+Field Goal Percentage: .538
+3-Point Field Goals: 16
+3-Point Field Goal Attempts: 32
+3-Point Field Goal Percentage: .500
+Free Throws: 19
+Free Throw Attempts: 26
+Free Throw Percentage: .731
+Offensive Rebounds: 5
+Total Rebounds: 34
+Assists: 26
+Steals: 5
+Blocks: 4
+Turnovers: 14
+Personal Fouls: 15
+Opponent Field Goals: 51
+Opponent Field Goal Attempts: 98
+Opponent Field Goal Percentage: .520
+Opponent 3-Point Field Goals: 18
+Opponent 3-Point Field Goal Attempts: 37
+Opponent 3-Point Field Goal Percentage: .486
+Opponent Free Throws: 12
+Opponent Free Throw Attempts: 13
+Opponent Free Throw Percentage: .923
+Opponent Offensive Rebounds: 9
+Opponent Total Rebounds: 41
+Opponent Assists: 37
+Opponent Steals: 7
+Opponent Blocks: 5
+Opponent Turnovers: 8
+Opponent Personal Fouls: 21
+
+

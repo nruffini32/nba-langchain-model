@@ -1,0 +1,8 @@
+team1,team2,predicted_score1,predicted_score2,model_prediction,total,pick,value,oupick,ouvalue
+Cavaliers,Pacers,106.0,110.0,Pacers -4.0,229.5,Pacers +2.0,6.0,Under,13.5
+Bucks,Knicks,112.0,102.0,Bucks -10.0,223.5,Bucks -5.5,4.5,Under,9.5
+Bulls,Nets,108.0,110.0,Nets -2.0,222.0,Nets +4.0,6.0,Under,4.0
+Thunder,Warriors,111.0,113.0,Warriors -2.0,226.0,Thunder +6.0,4.0,Under,2.0
+Heat,Wizards,107.0,112.0,Wizards -5.0,225.0,Wizards +8.5,13.5,Under,6.0
+Mavericks,Nuggets,115.0,110.0,Mavericks -5.0,228.5,Mavericks +5.5,10.5,Under,3.5
+Grizzlies,Trail Blazers,99.0,106.0,Trail Blazers -7.0,220.0,Trail Blazers +3.5,10.5,Under,15.0
