@@ -1,5 +1,5 @@
 # nba-langchain-model
-NBA sports betting app using LangChain
+NBA sports betting application using LangChain
 
 create .env
 - EMAIL, EMAIL_PASS, ROOT_PATH, OPENAI_API_KEY
