@@ -18,8 +18,6 @@ def main():
     m = Model()
     prediction_file = m.run()
 
-    # prediction_file = "/Users/nicoloruffini/Documents/nba_model/predictions/predictions_2023-11-04.csv"
-    # outcome_file = "/Users/nicoloruffini/Documents/nba_model/outcomes/outcome_2023-11-03.csv"
     # Send email with picks
     print("Sending emails")
     e = Email()
