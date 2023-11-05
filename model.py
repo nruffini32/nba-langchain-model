@@ -175,9 +175,6 @@ Teams: {team1} and {team2}
         print([team1, team2, score1, score2, model_prediction, pick, value, oupick, ouvalue])
 
     
-
-
-    # Predicted Score: Pistons: 112, Pelicans: 108
     def run(self):
         print("Running full model")
 
@@ -208,7 +205,5 @@ Teams: {team1} and {team2}
         return file_name
     
 
-# m = Model()
-# m.run()
 
 
