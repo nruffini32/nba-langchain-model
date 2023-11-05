@@ -72,8 +72,6 @@ class Vegas:
             else:
                 results.append("Push")
 
-        
-
         df['result'] = results
         df["ouresults"] = ouresults
         
@@ -118,10 +116,3 @@ class Vegas:
         self.store_results(outcome_file)
         return outcome_file
 
-
-
-
-# v = Vegas()
-# v.check_picks()
-# v.store_results("")
-# v.check_and_store_results()
