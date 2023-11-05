@@ -109,9 +109,4 @@ class Email:
         
         self.server.quit()
 
-
-# e = Email()
-# rmes = e.gen_message("/Users/nicoloruffini/Documents/nba_model/predictions/predictions_2023-11-03.csv", "/Users/nicoloruffini/Documents/nba_model/outcomes/outcome_2023-11-03.csv")
-# e.send_email("NOTHING", rmes)
-
     
