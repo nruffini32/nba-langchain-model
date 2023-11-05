@@ -20,12 +20,6 @@ class Data:
         self.matchups_dic = self.nba.get_matchups()
         self.team_games_dic = self._create_games_stats_dic()
 
-        with open('nba_season_stats.json', 'w') as file:
-            json.dump(self.season_stats_dic, file)
-
-        with open('nba_game_stats.json', 'w') as file:
-            json.dump(self.team_games_dic, file)
-
     def _create_games_stats_dic(self):
         print("Creating dic for all teams game stats Zzzz...")
         time.sleep(61)
