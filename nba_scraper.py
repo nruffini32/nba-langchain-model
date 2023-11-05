@@ -304,27 +304,7 @@ class NBAScraper:
             temp = (win_team, lose_team)
             tup = tuple(sorted(temp))
 
-
-
             dic[tup] = {win_team: win_score, lose_team: lose_score}
 
         return dic
 
-
-        
-
-
-    
-# nba = NBAScraper()
-# nba.get_single_team_season_stats("Spurs")
-# data = nba.get_all_team_season_stats()
-# for team in ["Pistons", "Pelicans"]:
-#     nba.get_single_team_game_stats(team)
-# nba.get_matchups()
-# nba.get_yesterday_scores()
-
-
-    
-    
-    
-    
