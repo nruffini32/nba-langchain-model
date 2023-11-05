@@ -119,16 +119,6 @@ Teams: {team1} and {team2}
             HumanMessage(content=human_input),
         ]
 
-        ################
-        file_path = f'{self.root_path}/prompts/{team1}_and_{team2}.txt'
-
-        # Open the file for writing
-        with open(file_path, 'w') as file:
-            # Write the string to the file
-            for i in [message.content for message in messages]:
-                file.write(i)
-        ##################
-
         chat = OpenAI(temperature=0.6)
         output = chat.invoke(messages).strip()
         print(output)
