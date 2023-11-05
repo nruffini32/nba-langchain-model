@@ -10,8 +10,8 @@ import os
 class Email:
     def __init__(self) -> None:
         load_dotenv()
-        self.username = 'nicoloruffini32@gmail.com'
-        self.password = 'anfm selq tgbq jsis'
+        self.username = os.environ.get("EMAIL")
+        self.password = os.environ.get("EMAIL_PASS")
         self.smtp_server = 'smtp.gmail.com'
         self.smtp_port = 587
         self.root_path = os.environ.get("ROOT_PATH")
