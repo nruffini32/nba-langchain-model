@@ -4,7 +4,7 @@
 Thi project is an NBA sports betting model using LangChain.
 The running of main.py triggers the below steps:
 1. Fetches yesterdays scores
-2. Checks yesterdays picks and stores results in a splite3 database
+2. Checks yesterdays picks and stores results in a sqlite3 database
 3. Make picks for today
 4. Send email with results and picks
 
