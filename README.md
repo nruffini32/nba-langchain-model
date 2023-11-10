@@ -9,7 +9,7 @@ The running of main.py triggers the below steps:
 4. Send email with results and picks
 
 ## Getting Started
-1. Install below dependencies with the requirements.txt file: `pip install -r requirements.txt`
+1. Install below dependencies
   * <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">***bs4***</a>
   * <a href="https://www.selenium.dev/documentation/">***Selenium***</a>
   * <a href="https://python.langchain.com/docs/get_started/introduction">***LangChain***</a>
