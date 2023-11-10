@@ -14,16 +14,12 @@ The running of main.py triggers the below steps:
   * <a href="https://www.selenium.dev/documentation/">***Selenium***</a>
   * <a href="https://python.langchain.com/docs/get_started/introduction">***LangChain***</a>
 2. Create .env file and configure below variables
-
 ```
     EMAIL=example@gmail.com
     EMAIL_PASS=password
     ROOT_PATH=/root/file/path
     OPENAI_API_KEY=123232youropen_ap_key
 ```
-
-create .env
-- EMAIL, EMAIL_PASS, ROOT_PATH, OPENAI_API_KEY
 3. Update `self.to_emails` variable in email_class.py with emails you want to send to
 4. Run `Model().run()` by itself the first day.
   
