@@ -14,6 +14,7 @@ The running of main.py triggers the below steps:
   * <a href="https://www.selenium.dev/documentation/">***Selenium***</a>
   * <a href="https://python.langchain.com/docs/get_started/introduction">***LangChain***</a>
 2. Create .env file and configure below variables
+
 `
     EMAIL=example@gmail.com
     EMAIL_PASS=password
