@@ -24,7 +24,7 @@ The running of main.py triggers the below steps:
 
 create .env
 - EMAIL, EMAIL_PASS, ROOT_PATH, OPENAI_API_KEY
-3. Update `self.to_emails` variable in email_class.py
+3. Update `self.to_emails` variable in email_class.py with emails you want to send to
 4. Run `Model().run()` by itself the first day.
   
 ## Usage
