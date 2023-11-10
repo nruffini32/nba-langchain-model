@@ -25,7 +25,11 @@ The running of main.py triggers the below steps:
 create .env
 - EMAIL, EMAIL_PASS, ROOT_PATH, OPENAI_API_KEY
 3. Update `self.to_emails` variable in email_class.py
+4. Run `Model().run()` by itself the first day.
+  
+## Usage
+Run main.py before the NBA games start for the day. 
+If <a href="https://www.vegasinsider.com/nba/matchups/">vegasinsider</a> or <a href="https://www.basketball-reference.com/">basketball-reference</a> ever change the structure of the html of their webistes the script will break.
 
-update emails - set up for gmail rn - will have to create app password
 
 Run model alone for the first time
