@@ -11,8 +11,15 @@ The running of main.py triggers the below steps:
 ## Getting Started
 1. Install below dependencies with the requirements.txt file: `pip install -r requirements.txt`
   * <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">***bs4***</a>
-  * <a href="https://www.selenium.dev/documentation/">***selenium***</a>
-  * <a href="https://python.langchain.com/docs/get_started/introduction">***LangChain</a>
+  * <a href="https://www.selenium.dev/documentation/">***Selenium***</a>
+  * <a href="https://python.langchain.com/docs/get_started/introduction">***LangChain***</a>
+2. Create .env file and configure below variables
+`
+    EMAIL=example@gmail.com
+    EMAIL_PASS=password
+    ROOT_PATH=/root/file/path
+    OPENAI_API_KEY=123232youropen_ap_key
+`
 
 create .env
 - EMAIL, EMAIL_PASS, ROOT_PATH, OPENAI_API_KEY
