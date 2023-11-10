@@ -24,6 +24,7 @@ The running of main.py triggers the below steps:
 
 create .env
 - EMAIL, EMAIL_PASS, ROOT_PATH, OPENAI_API_KEY
+3. Update `self.to_emails` variable in email_class.py
 
 update emails - set up for gmail rn - will have to create app password
 
