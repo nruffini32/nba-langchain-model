@@ -1,7 +1,7 @@
 # nba-langchain-model
 
 ## About
-Thi project is an NBA sports betting model using LangChain.
+This project is an NBA sports betting model using LangChain.
 The running of main.py triggers the below steps:
 1. Fetches yesterdays scores
 2. Checks yesterdays picks and stores results in a sqlite3 database
