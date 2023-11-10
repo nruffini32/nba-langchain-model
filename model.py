@@ -143,10 +143,8 @@ Teams: {team1} and {team2}
         favored_team = spread.split("-")[0].strip()
         by_points = float(spread.split("-")[-1])
         prediction[favored_team] -= by_points
-        print(prediction)
 
         other_team = team2 if team1 == favored_team else team1
-        print(favored_team, other_team, by_points)
 
         if prediction[favored_team] > prediction[other_team]:
             pick = spread
@@ -172,7 +170,6 @@ Teams: {team1} and {team2}
             ouvalue = "No Pick" 
 
         csv_writer.writerow([team1, team2, score1, score2, model_prediction, total, pick, value, oupick, ouvalue])
-        print([team1, team2, score1, score2, model_prediction, pick, value, oupick, ouvalue])
 
     
     def run(self):
@@ -196,7 +193,6 @@ Teams: {team1} and {team2}
             total = float(matchup["lines"]["total"])
 
             prediction_string = self.make_prediction(team1, team2)
-            print("INPUTS:", team1, team2, spread, total, prediction_string)
             self.store_prediction(team1, team2, spread, total, prediction_string, csv_writer)
             print()
 
