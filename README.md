@@ -31,6 +31,6 @@ create .env
 Run main.py before the NBA games start for the day. 
 If <a href="https://www.vegasinsider.com/nba/matchups/">vegasinsider</a> or <a href="https://www.basketball-reference.com/">basketball-reference</a> ever change the structure of their html the script will break.
 
-***DISCLAIMER This model does not provide any edge on sports books. This was made for educational purposes only.***
+***-----DISCLAIMER This model does not provide any edge on sports books. This was made for educational purposes only.-----***
 
 
