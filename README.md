@@ -10,7 +10,7 @@ The running of main.py triggers the below steps:
 
 ## Getting Started
 1. Install below dependencies with the requirements.txt file: `pip install -r requirements.txt`
-   > <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">***bs4***</a>
+<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">***bs4***</a>
 
 create .env
 - EMAIL, EMAIL_PASS, ROOT_PATH, OPENAI_API_KEY
